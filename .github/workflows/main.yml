@@ -1,0 +1,26 @@
+name: Production workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Production Code
+        uses: actions/checkout@v2
+      - name: Use Node.js 17.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.x
+      - run: yarn
+      - run: yarn build --if-present
+      - name: Deploy Production to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: 'cicd-next-production'
+          heroku_email: 'arie.main@icloud.com'
