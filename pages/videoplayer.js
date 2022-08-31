@@ -44,6 +44,9 @@ const VisualPlayer = () => {
                         null
                     )
                 }
+                <div>
+                    I am new version
+                </div>
                 <div className={styles.buttonContainer}>
                     <button className={styles.buttonStyle} onClick={() => setIsPlaying(true)}>
                         Play
